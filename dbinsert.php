@@ -21,22 +21,22 @@ if (isset($_POST['submit'])) {
 		return $input;
 	}
 
-	$firmenname 		= correctForminput($_POST['firmenname']);
-	$anrede 			= correctForminput($_POST['anrede']);
-	$ansprechpartner	= correctForminput($_POST['ansprechpartner']);
-	$telnr 				= correctForminput($_POST['telnr']);
-	$email 				= correctForminput($_POST['email']);
-	$bereich 			= correctForminput($_POST['bereich']);
-	$bereichSonstige 	= correctForminput($_POST['bereichSonstiges']);
-	$teilnahmeDatum 	= correctForminput($_POST['teilnahmeDatum']);
-	$tische 			= correctForminput($_POST['tische']);
-	$stuehle 			= correctForminput($_POST['stuehle']);
-	$anmerkung 			= correctForminput($_POST['anmerkung']);
-	$vortrag 			= correctForminput($_POST['vortrag']);
-	$vortragDatum 		= correctForminput($_POST['vortragDatum']);
-	$vortragThema 		= correctForminput($_POST['vortragThema']);
-	$vortragDauer 		= correctForminput($_POST['vortragDauer']);
-	$emailKopie 		= correctForminput($_POST['emailKopie']);
+	$firmenname 	 = correctForminput($_POST['firmenname']);
+	$anrede 	 = correctForminput($_POST['anrede']);
+	$ansprechpartner = correctForminput($_POST['ansprechpartner']);
+	$telnr 		 = correctForminput($_POST['telnr']);
+	$email 		 = correctForminput($_POST['email']);
+	$bereich 	 = correctForminput($_POST['bereich']);
+	$bereichSonstige = correctForminput($_POST['bereichSonstiges']);
+	$teilnahmeDatum  = correctForminput($_POST['teilnahmeDatum']);
+	$tische 	 = correctForminput($_POST['tische']);
+	$stuehle 	 = correctForminput($_POST['stuehle']);
+	$anmerkung 	 = correctForminput($_POST['anmerkung']);
+	$vortrag 	 = correctForminput($_POST['vortrag']);
+	$vortragDatum 	 = correctForminput($_POST['vortragDatum']);
+	$vortragThema 	 = correctForminput($_POST['vortragThema']);
+	$vortragDauer 	 = correctForminput($_POST['vortragDauer']);
+	$emailKopie 	 = correctForminput($_POST['emailKopie']);
 
 
 
@@ -79,9 +79,9 @@ if (isset($_POST['submit'])) {
 
 
 	$sql_insert = $link->prepare("INSERT INTO anmeldungen 
-									(firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie) 
-								VALUES 
-									(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+					 (firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie) 
+					VALUES 
+					 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 	# Mögliche Datebtypen für Platzhalter: 
 	#i - integer
