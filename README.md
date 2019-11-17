@@ -22,7 +22,7 @@ mysqli connector to the local mysql or mariadb database. The connector file is u
 ## datenbankinhalt.php 
 php file with to display the database content with the jquery plugin datatables. 
 
-## anmeldungen.sql 
+## database.sql 
 SQL script to create the required tables. (tested with mariadb 10.1)
 
 ### More information 
