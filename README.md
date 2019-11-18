@@ -17,7 +17,7 @@ php file to insert the user data into the mysql or mariadb database using prepar
 Contains html content to give the user feedback if his data has been saved successfully. The message is displayed via a bootstrap modal popup. 
 
 ### mysql_connect.php 
-mysqli connector to the local mysql or mariadb database. The connector file is used by formular.php and    
+mysqli connector to the local mysql or mariadb database. The connector file is used by formular.php and datenbankinhalt.php. Please make sure you enter the correct login credentials.
 
 ### datenbankinhalt.php 
 php file with to display the database content with the jquery plugin datatables. 
