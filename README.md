@@ -1,6 +1,6 @@
 # php_ContactForm
 
-HTML5 and PHP7.x form to save contact information in a mysql or mariadb database.
+HTML5 and PHP 7.x form to save contact information in a mysql or mariadb database.
 
 This project use bootstrap 4.x (css framework), jquery and some jquery plugins like datatable. All required files are integrated via a CDN.
 
@@ -23,7 +23,7 @@ mysqli connector to the local mysql or mariadb database. The connector file is u
 php file with to display the database content with the jquery plugin datatables. 
 
 ### database.sql 
-SQL script to create the required tables. (tested with mariadb 10.1)
+SQL script to create the required database and tables. (tested with mariadb 10.1, can maybe not work with other versions from mysql or mariadb)
 
 #### More information 
 - https://getbootstrap.com/
