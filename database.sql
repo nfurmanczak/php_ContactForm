@@ -1,3 +1,4 @@
+-- create table for the user data 
 CREATE TABLE `anmeldungen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firmenname` varchar(100) NOT NULL DEFAULT '',
@@ -19,12 +20,14 @@ CREATE TABLE `anmeldungen` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4;
 
+-- table for different titles (dropdown menu in formular.php)
 CREATE TABLE `anrede` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `anrede` varchar(15) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
+-- table for possible dates 
 CREATE TABLE `termine` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datum` date DEFAULT NULL,
