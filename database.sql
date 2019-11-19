@@ -33,7 +33,7 @@ CREATE TABLE `anrede` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `anrede` varchar(15) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `anrede`(anrede) VALUES
  ('keine Angabe'),
@@ -52,14 +52,14 @@ CREATE TABLE `termine` (
   `datum` date DEFAULT NULL,
   `wochentag` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `termine` (`datum`, `wochentag`) VALUES 
  ('2019-11-22', 'Fr.'),
  ('2019-11-23', 'Sa.'), 
  (null, 'beide Tage'); 
 
- CREATE USER 'form_user'@'localhost' IDENTIFIED BY 'password1';
- GRANT select, insert ON kontaktformular.anmeldungen TO 'form_user'@'localhost';
- GRANT select ON kontaktformular.termine TO 'form_user'@'localhost';
- GRANT select ON kontaktformular.anrede TO 'form_user'@'localhost';
+CREATE USER 'form_user'@'localhost' IDENTIFIED BY 'password1';
+GRANT select, insert ON kontaktformular.anmeldungen TO 'form_user'@'localhost';
+GRANT select ON kontaktformular.termine TO 'form_user'@'localhost';
+GRANT select ON kontaktformular.anrede TO 'form_user'@'localhost';
