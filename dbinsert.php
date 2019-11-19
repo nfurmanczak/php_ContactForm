@@ -79,9 +79,9 @@ if (isset($_POST['submit'])) {
 
 
 	$sql_insert = $link->prepare("INSERT INTO anmeldungen 
-					 (firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie) 
-					VALUES 
-					 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
+									(firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie) 
+								VALUES 
+									(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
 	# Mögliche Datebtypen für Platzhalter: 
 	#i - integer
