@@ -4,6 +4,15 @@ HTML5 and PHP 7.x form to save contact information in a mysql or mariadb databas
 
 This project use bootstrap 4.x (css framework), jquery and some jquery plugins like datatable. All required files are integrated via a CDN.
 
+# Installation 
+
+1. Setup a webserver (Apache, nginx, etc.) with PHP 7.x (mod_php or php7.x-fpm). Please check if you have also installed the php-mysql module to connect with mysql/mariadb databases
+2. Setup a MySQL or MariaDB Database 
+3. Download or clone the git repositotry (git clone https://github.com/nfurmanczak/php_ContactForm.git)
+4. Move the html and php file into your document root 
+5. Import the database.sql file (mysql < database.sql) to create the database and user
+   
+
 ### css/min.css 
 A simple css file which is used by formular.php. 
 
