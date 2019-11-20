@@ -59,7 +59,7 @@ INSERT INTO `termine` (`datum`, `wochentag`) VALUES
  ('2019-11-23', 'Sa.'), 
  (null, 'beide Tage'); 
 
-CREATE USER 'form_user'@'localhost' IDENTIFIED BY 'password1';
+CREATE USER 'form_user'@'localhost' IDENTIFIED BY 'hushai|h-ee-K8';
 GRANT select, insert ON kontaktformular.anmeldungen TO 'form_user'@'localhost';
 GRANT select ON kontaktformular.termine TO 'form_user'@'localhost';
 GRANT select ON kontaktformular.anrede TO 'form_user'@'localhost';
