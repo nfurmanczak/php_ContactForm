@@ -16,8 +16,9 @@
 <body>
 
   <?php
-  // Einbinden der Datei fst71/mysql_connect.php welche die Zugangsdaten für die Datenbank inkl. prüfung ob die Datei vorhanden ist 
-  // Ansonsten erhält der Besucher eine simple Fehlermeldung im Browser 
+  session_start();
+  // Einbinden der Datei fst71/mysql_connect.php welche die Zugangsdaten für die Datenbank inkl. prüfung ob die Datei vorhanden ist
+  // Ansonsten erhält der Besucher eine simple Fehlermeldung im Browser
   $mysql_connect_file = 'mysql_connect.php';
   if (!file_exists($mysql_connect_file)) {
     echo "Wegen einem technischen Problem steht das Kontaktformular leider aktuell nicht zur Verfügung. Wir bitten um Verständnis. ";
@@ -26,13 +27,13 @@
   require_once $mysql_connect_file;
   include 'dbinsert.php';
 
-  // SQL Abfrage für die Auswahl der Anrede 
+  // SQL Abfrage für die Auswahl der Anrede
   $db_anrede = mysqli_query($link, "SELECT anrede FROM anrede");
 
-  // SQL Abfrage für die möglichen Termine 
+  // SQL Abfrage für die möglichen Termine
   $db_termine = mysqli_query($link, "SELECT id, datum, wochentag FROM termine");
 
-  // Verbindung zur Datenbank schließen 
+  // Verbindung zur Datenbank schließen
   mysqli_close($link);
   ?>
 
@@ -89,7 +90,7 @@
             <label for="anrede">Anrede <span class="required">*</span> </label>
             <select id="anrede" class="custom-select" name="anrede" required>
               <?php
-              // Einzelner <option> Wert außerhalb der Schleife der keinen valaue besitzt. 
+              // Einzelner <option> Wert außerhalb der Schleife der keinen valaue besitzt.
               // Dieser ist notwendig da das Feld den tag required besitzt. Ohne eine option mit value="" würde der Browser den Menüpunkt bereits als ausgewählt markieren
               echo "<option value=\"\" selected>Bitte wählen</option>";
               while (list($anrede) = mysqli_fetch_array($db_anrede)) {
@@ -119,7 +120,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="email">E-Mail <span class="required">*</span> </label>
-            <!-- Einfaches Pattern um auf E-Mail Adressen zu matchen. In entsprechenden RFCs ist der genaue erlaube Aufbau von E-Mail Adressen beschrieben, allerdings wäre 
+            <!-- Einfaches Pattern um auf E-Mail Adressen zu matchen. In entsprechenden RFCs ist der genaue erlaube Aufbau von E-Mail Adressen beschrieben, allerdings wäre
             ein Regex Pattern dafür zu fehleranfällig und ungenau, zudem können TLDs auch erweitert werden -->
             <input type="text" class="form-control" id="email" name="email" pattern="^.*@.*\.{1}.{1,}$" placeholder="name@domain.org" maxlength="80" required>
             <div class="invalid-feedback">
@@ -167,7 +168,7 @@
                 if ($datum == null) {
                   echo "<option value=\"beide Tage\">$wochentag</option>";
                 } else {
-                  // Datumsformnat aus der DB nach DE umwandelnm nur für die Anzeige im Formular, value bleibt das DB Format 
+                  // Datumsformnat aus der DB nach DE umwandelnm nur für die Anzeige im Formular, value bleibt das DB Format
                   $db_date = DateTime::createFromFormat('Y-m-d', $datum);
                   $de_date = $db_date->format('d.m.Y');
                   echo "<option value=\"$id\">$de_date - $wochentag</option>";
@@ -298,12 +299,12 @@
     <!-- ################ -->
 
     <!-- To do: [] JS in externe Datei auslgern -->
-    
+
     <!-- Plain JavaScript um bestimmte Elemente (Vortrag) auszublenden  -->
     <!-- Formular Datum, Dauer und Thema -->
     <script>
       $("#vortrag").change(function() {
-        // Füge das Attribut required hinzu oder entferne es wieder 
+        // Füge das Attribut required hinzu oder entferne es wieder
         if ($(this).val() == "1") {
           $('#inputTalkDateDiv').show();
           $('#vortragDatum').attr('required', '');
@@ -355,6 +356,13 @@
           });
         }, false);
       })();
+    </script>
+
+    <!-- Verhindere das die Formulardaten über ein Reload der Seite erneut in die Datenbank eingetragen werden -->
+    <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
     </script>
 
     <!-- ################ -->

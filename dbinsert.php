@@ -6,13 +6,13 @@
 
 if (isset($_POST['submit'])) {
 
-	# Anlegen der Variablen und zuweisen eines leeren Wertes  
+	# Anlegen der Variablen und zuweisen eines leeren Wertes
 	$firmenname = $anrede = $ansprechpartner = $telnr = $email = $bereich = $teilnahmeDatum = $tische = $stuehle = $anmerkung = $vortrag = $vortragDatum = $vortragDauer = $vortragThema = $emailKopie = $bereichSonstige = "";
 
-	# DebugMode für zusätzliche Ausgaben falls benötigt 
+	# DebugMode für zusätzliche Ausgaben falls benötigt
 	$debugMode = false;
 
-	# Filtern von niocht erlauben Eingaben 
+	# Filtern von niocht erlauben Eingaben
 	function correctForminput($input)
 	{
 		$input = trim($input);
@@ -38,9 +38,15 @@ if (isset($_POST['submit'])) {
 	$vortragDauer 	 = correctForminput($_POST['vortragDauer']);
 	$emailKopie 	 = correctForminput($_POST['emailKopie']);
 
+  $messageIdent = md5($firmenname . $anrede . $ansprechpartner . $telnr . $email . $bereich . $teilnahmeDatum . $tische . $stuehle . $anmerkung . $vortrag . $vortragDatum . $vortragDauer . $vortragThema . $emailKopie . $bereichSonstige);
 
+	$sessionMessageIdent = isset($_SESSION['messageIdent'])?$_SESSION['messageIdent']:'';
 
-	# Prüfe ob optionale Variablen leer sind und setzte ggf. null als Wert für die DB 
+    if(!($messageIdent!=$sessionMessageIdent)) {
+      exit;
+    }
+
+	# Prüfe ob optionale Variablen leer sind und setzte ggf. null als Wert für die DB
 	if (empty($anmerkung)) {
 		$anmerkung = NULL;
 	}
@@ -78,12 +84,12 @@ if (isset($_POST['submit'])) {
 	}
 
 
-	$sql_insert = $link->prepare("INSERT INTO anmeldungen 
-									(firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie) 
-								VALUES 
+	$sql_insert = $link->prepare("INSERT INTO anmeldungen
+									(firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie)
+								VALUES
 									(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
-	# Mögliche Datebtypen für Platzhalter: 
+	# Mögliche Datebtypen für Platzhalter:
 	#i - integer
 	#d - double
 	#s - string
@@ -98,9 +104,9 @@ if (isset($_POST['submit'])) {
 		echo "<br>Anzahl der hinzugefügten Datensätze: " . $num . "<br>";
 	}
 
-	# Prüfe die Anzahl der geänderten Datensätze 
-	# num > 0 = Datensatz wurde erfolgreich eingetragen 
-	# num == 0 (else Block) = Datensatz wurde nicht eingetragen, Benutzer erhält Fehlermeldung 
+	# Prüfe die Anzahl der geänderten Datensätze
+	# num > 0 = Datensatz wurde erfolgreich eingetragen
+	# num == 0 (else Block) = Datensatz wurde nicht eingetragen, Benutzer erhält Fehlermeldung
 	if ($num > 0) {
 		include("erfolg.html");
 		echo "<script type='text/javascript'>
@@ -120,7 +126,7 @@ if (isset($_POST['submit'])) {
 	//mysqli_close($link);
 
 	# ####################################################################
-	# Sende eine Kopie der Formulardaten an die angegebene E-Mail Adresse 
+	# Sende eine Kopie der Formulardaten an die angegebene E-Mail Adresse
 	# ####################################################################
 	if ($emailKopie) {
 
@@ -130,10 +136,10 @@ if (isset($_POST['submit'])) {
 
 		if ($vortrag == "Ja") {
 			$vortragString = 'Vortrag am: ' . $vortragDatum . "\r\n" .
-							 'Thema: ' . $vortragThema . "\r\n"; 
+							 'Thema: ' . $vortragThema . "\r\n";
 		}
 		else {
-			$vortragString = ''; 
+			$vortragString = '';
 		}
 
 		$subject = 'Ausbildungstag 2019';
@@ -149,14 +155,14 @@ if (isset($_POST['submit'])) {
 			'Anzahl Tische: ' . $tische . "\r\n" .
 			'Anzahl Stühle: ' . $stuehle . "\r\n" .
 			'Vortrag: ' . $vortrag . "\r\n" .
-			$vortragString . "\r\n\r\n" . 
-			'Bei Fragen können Sie sich gerne an info@domain.com wenden. ' . "\r\n\r\n" . 
+			$vortragString . "\r\n\r\n" .
+			'Bei Fragen können Sie sich gerne an info@domain.com wenden. ' . "\r\n\r\n" .
 			'Viele Grüße ' . "\r\n\r\n" .
 			'Ihr Team der GSO Köln'
 			;
 
 		// php mail weigert sich den $header als Array anzunehmen
-		// Moeglicherweise bug?  
+		// Moeglicherweise bug?
 		$header = 'From: kontaktformular@furmanczak.de' . "\r\n" .
 			'Reply-To: kontaktformular@furmanczak.de' . "\r\n" .
 			'MIME-Version: 1.0' . "\r\n" .
