@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
 	#i - integer
 	#d - double
 	#s - string
-	#b - BLOB
+	#b - blob
 
 	$sql_insert->bind_param("sssssssiisissii", $firmenname, $anrede, $ansprechpartner, $telnr, $email, $bereich, $teilnahmeDatum, $tische, $stuehle, $anmerkung, $vortrag, $vortragDatum, $vortragThema, $vortragDauer, $emailKopie);
 	$sql_insert->execute();
@@ -123,12 +123,11 @@ if (isset($_POST['submit'])) {
 			 </script>";
 	}
 
-	//mysqli_close($link);
-
-	# ####################################################################
-	# Sende eine Kopie der Formulardaten an die angegebene E-Mail Adresse
-	# ####################################################################
-	if ($emailKopie) {
+	# #####################################################################
+	# Sende eine Kopie der Formulardaten an die angegebene E-Mail Adresse #
+	# #####################################################################
+	
+	if ($emailKopie && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 		$vortrag = ($vortrag == 1 ? "Ja" : "Nein");
 		$vortragThema = ($vortrag == "Ja" ? $vortragThema : " -");

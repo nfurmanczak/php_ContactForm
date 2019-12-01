@@ -26,13 +26,6 @@
   }
   require_once $mysql_connect_file;
 
-  // LÖSCH MICH 
-  // SQL Abfragen
-  // $db_select_column = mysqli_query($link, "SELECT `COLUMN_NAME`
-  // FROM `INFORMATION_SCHEMA`.`COLUMNS`
-  // WHERE `TABLE_SCHEMA`='kontaktformular'
-  // AND `TABLE_NAME`='anmeldungen'");
-
   $db_select_all_rows = mysqli_query($link, "SELECT * FROM anmeldungen");
 
   mysqli_close($link);
@@ -47,7 +40,7 @@
   ?>
 
   <!-- ########################### -->
-  <!-- START NAVBAR / Menüleiste -->
+  <!-- START NAVBAR / Menüleiste   -->
   <!-- ########################### -->
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="container">
@@ -68,7 +61,7 @@
     </div>
   </nav>
   <!-- ########################### -->
-  <!-- ENDE NAVBAR / Menüleiste  -->
+  <!-- ENDE NAVBAR / Menüleiste    -->
   <!-- ########################### -->
   <br>
 
@@ -77,7 +70,7 @@
   <!-- START TABELLE -->
   <!-- ############# -->
   <div class="container-fluid">
-    <table id="anmeldung" class="table-bordered ">
+    <table id="anmeldung" class="table-bordered compact hover" >
       <thead>
         <tr>
           <th>Firma</th>
@@ -133,8 +126,8 @@
   </div>
 
   <script>
-    $(document).ready(function() {
-      $('#anmeldung').DataTable();
+    $('#anmeldung').DataTable({
+      responsive: true
     });
   </script>
 </body>
