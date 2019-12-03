@@ -29,7 +29,7 @@ Contains html content to give the user feedback if his data has been saved succe
 mysqli connector to the local mysql or mariadb database. The connector file is used by formular.php and datenbankinhalt.php. Please make sure you enter the correct login credentials.
 
 ### datenbankinhalt.php 
-php file with to display the database content with the jquery plugin datatables. 
+php file to display the database content with the jquery plugin datatables. 
 
 ### database.sql 
 SQL script to create the required database and tables. (tested with mariadb 10.1, can maybe not work with other versions from mysql or mariadb)
