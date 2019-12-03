@@ -10,9 +10,7 @@ if (isset($_POST['submit'])) {
 	$firmenname = $anrede = $ansprechpartner = $telnr = $email = $bereich = $teilnahmeDatum = $tische = $stuehle = $anmerkung = $vortrag = $vortragDatum = $vortragDauer = $vortragThema = $emailKopie = $bereichSonstige = "";
 
 	# DebugMode für zusätzliche Ausgaben falls benötigt
-	$debugMode = true;
-
-
+	$debugMode = false;
 
 	# Filtern von niocht erlauben Eingaben
 	function correctForminput($input)
@@ -40,16 +38,13 @@ if (isset($_POST['submit'])) {
 	$vortragDauer 	 = correctForminput($_POST['vortragDauer']);
 	$emailKopie 	 = correctForminput($_POST['emailKopie']);
 
+	$messageIdent = md5($firmenname . $anrede . $ansprechpartner . $telnr . $email . $bereich . $teilnahmeDatum . $tische . $stuehle . $anmerkung . $vortrag . $vortragDatum . $vortragDauer . $vortragThema . $emailKopie . $bereichSonstige);
 
-	$stuehle = "Hallo"; 
-	$tische = "Test"; 
-  $messageIdent = md5($firmenname . $anrede . $ansprechpartner . $telnr . $email . $bereich . $teilnahmeDatum . $tische . $stuehle . $anmerkung . $vortrag . $vortragDatum . $vortragDauer . $vortragThema . $emailKopie . $bereichSonstige);
+	$sessionMessageIdent = isset($_SESSION['messageIdent']) ? $_SESSION['messageIdent'] : '';
 
-	$sessionMessageIdent = isset($_SESSION['messageIdent'])?$_SESSION['messageIdent']:'';
-
-    if(!($messageIdent!=$sessionMessageIdent)) {
-      exit;
-    }
+	if (!($messageIdent != $sessionMessageIdent)) {
+		exit;
+	}
 
 	# Prüfe ob optionale Variablen leer sind und setzte ggf. null als Wert für die DB
 	if (empty($anmerkung)) {
@@ -89,16 +84,15 @@ if (isset($_POST['submit'])) {
 	}
 
 
-	if (!is_numeric($tische) || !is_numeric($stuehle)) 
-	{
+	if (!is_numeric($tische) || !is_numeric($stuehle)) {
 		include("fehler.html");
 		echo "<script type='text/javascript'>
 			 $(document).ready(function(){
 			 $('#ModalFehler').modal('show');
 			 });
 			 </script>";
-		exit; 
-	}  
+		exit;
+	}
 
 	$sql_insert = $link->prepare("INSERT INTO anmeldungen
 									(firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie)
@@ -142,7 +136,7 @@ if (isset($_POST['submit'])) {
 	# #####################################################################
 	# Sende eine Kopie der Formulardaten an die angegebene E-Mail Adresse #
 	# #####################################################################
-	
+
 	if ($emailKopie && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 		$vortrag = ($vortrag == 1 ? "Ja" : "Nein");
@@ -151,9 +145,8 @@ if (isset($_POST['submit'])) {
 
 		if ($vortrag == "Ja") {
 			$vortragString = 'Vortrag am: ' . $vortragDatum . "\r\n" .
-							 'Thema: ' . $vortragThema . "\r\n";
-		}
-		else {
+				'Thema: ' . $vortragThema . "\r\n";
+		} else {
 			$vortragString = '';
 		}
 
@@ -173,8 +166,7 @@ if (isset($_POST['submit'])) {
 			$vortragString . "\r\n\r\n" .
 			'Bei Fragen können Sie sich gerne an info@domain.com wenden. ' . "\r\n\r\n" .
 			'Viele Grüße ' . "\r\n\r\n" .
-			'Ihr Team der GSO Köln'
-			;
+			'Ihr Team der GSO Köln';
 
 		// php mail weigert sich den $header als Array anzunehmen
 		// Moeglicherweise bug?
