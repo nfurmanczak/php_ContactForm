@@ -83,7 +83,7 @@
             <label for="firmenname">Name der Firma, Hochschule oder Organisation <span class="required">*</span> </label>
             <input type="text" class="form-control" id="firmenname" placeholder="Firmenname GmbH" name="firmenname" minlength="3" maxlength="100" required>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte korrekt ausfüllen.
+              Bitte Firmennamen angeben.
             </div>
           </div>
           <div class="form-group col-md-2">
@@ -99,7 +99,7 @@
               ?>
             </select>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte auswählen.
+              Bitte Anrede auswählen.
             </div>
           </div>
           <div class="form-group col-md-4">
@@ -107,7 +107,7 @@
             <!-- /D als Pattern steht für alle nicht Zahlen. Dies ist eine einfach alternative um alle speziellen Buchstaben (Umlaute, ß, á, etc) zuzulassne -->
             <input type="text" class="form-control" id="ansprechpartner" pattern="^\D{3,60}" placeholder="Max Mustermann" name="ansprechpartner" required>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte korrekt ausfüllen.
+              Gültiger Name benötigt.
             </div>
           </div>
           <div class="form-group col-md-6">
@@ -115,16 +115,16 @@
             <!-- Einfaches Pattern um Rufnummer, inkl. Zeichen wie (),-,+ zu matchen -->
             <input type="text" class="form-control" id="telnr" name="telnr" pattern="^[-+()0-9\s]{6,20}" maxlength="20" placeholder="0203 555 1234" required>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte korrekt ausfüllen.
+              Gültige Rufnummer benötigt.
             </div>
           </div>
           <div class="form-group col-md-6">
             <label for="email">E-Mail <span class="required">*</span> </label>
             <!-- Einfaches Pattern um auf E-Mail Adressen zu matchen. In entsprechenden RFCs ist der genaue erlaube Aufbau von E-Mail Adressen beschrieben, allerdings wäre
             ein Regex Pattern dafür zu fehleranfällig und ungenau, zudem können TLDs auch erweitert werden -->
-            <input type="text" class="form-control" id="email" name="email" pattern="^.*@.*\.{1}.{1,}$" placeholder="name@domain.org" maxlength="80" required>
+            <input type="text" class="form-control" id="email" name="email" pattern="^.*@.*\.{1}.{2,}$" placeholder="name@domain.org" maxlength="80" required>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte korrekt ausfüllen.
+              Gültige E-Mail Adresse benötigt.
             </div>
           </div>
           <div class="form-group col-md-6">
@@ -136,7 +136,7 @@
               <option value="Sonstige">Sonstiges</option>
             </select>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte auswählen.
+              Bitte passenden Bereich auswählen.
             </div>
           </div>
           <div class="form-group col-md-6" id="bereichSonstigesDiv">
@@ -158,7 +158,7 @@
       </div>
       <div class="box_gray">
         <div class="form-row">
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="teilnahmeDatum"><br>Teilnahme am <span class="required">*</span></label>
             <select id="teilnahmeDatum" class="custom-select" name="teilnahmeDatum" id="teilnahmeDatum" required>
               <?php
@@ -176,28 +176,23 @@
               }
               ?>
             </select>
+            <div class="invalid-feedback">
+              Datum der Teilnahme auswählen.
+            </div>
           </div>
-
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="tische"><br>Anzahl benötigter Tische <span class="required">*</span></label>
-            <select id="tische" name="tische" class="custom-select" required>
-              <option value="">Bitte wählen</option>
-              <option value="0">Kein Tisch</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
+            <input type="number" class="form-control" id="tische" name="tische" value="0" min="0" max="2" required>
+            <div class="invalid-feedback">
+              Zulässiger Wert ist nur 0 bis 4.
+            </div>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="stuehle"><br>Anzahl benötigter Stühle <span class="required">*</span></label>
-            <select id="stuehle" name="stuehle" class="custom-select" required>
-              <option value="">Bitte wählen</option>
-              <option value="0">Keine Stühle</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
+            <input type="number" class="form-control" id="stuehle" name="stuehle" value="0" min="0" max="4" required>
+            <div class="invalid-feedback">
+              Zulässiger Wert ist nur 0 bis 4.
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -218,7 +213,7 @@
               <option value=1>Ja</option>
             </select>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte auswählen.
+              Auswahl benötigt.
             </div>
           </div>
           <div class="form-group col-md-2" id="inputTalkDateDiv">
@@ -229,14 +224,14 @@
               <option value=2019-11-24>Samstag (24.11)</option>
             </select>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte auswählen.
+              Bitte Datum auswählen.
             </div>
           </div>
           <div class="form-group col-md-4" id="inputTalkTopicDiv">
             <label for="vortragThema">Thema des Vortrags <span class="required">*</span> </label>
             <input type="text" class="form-control" id="vortragThema" name="vortragThema" placeholder="z.B. Arbeiten in Industrie 4.0" minlength="4" maxlength="50">
             <div class="invalid-feedback">
-              Pflichtfeld, bitte ein Thema angeben.
+              Bitte ein Thema angeben.
             </div>
           </div>
           <div class="form-group col-md-4" id="inputTalkTimeDiv">
@@ -251,7 +246,7 @@
               <option value=60>60 Minuten</option>
             </select>
             <div class="invalid-feedback">
-              Pflichtfeld, bitte auswählen.
+              Bitte die Dauer wählen.
             </div>
           </div>
         </div>
@@ -294,14 +289,12 @@
     <!-- ENDE DES FORMULARES  -->
     <!-- ##################### -->
 
+    
     <!-- ################ -->
     <!-- START JAVASCRIPT -->
     <!-- ################ -->
 
-    <!-- To do: [] JS in externe Datei auslgern -->
-
-    <!-- Plain JavaScript um bestimmte Elemente (Vortrag) auszublenden  -->
-    <!-- Formular Datum, Dauer und Thema -->
+    <!-- Plain JavaScript um bestimmte Elemente (z.B.: Vortrag) auszublenden  -->
     <script>
       $("#vortrag").change(function() {
         // Füge das Attribut required hinzu oder entferne es wieder
@@ -360,8 +353,8 @@
 
     <!-- Verhindere das die Formulardaten über ein Reload der Seite erneut in die Datenbank eingetragen werden -->
     <script>
-      if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
       }
     </script>
 

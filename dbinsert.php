@@ -10,7 +10,9 @@ if (isset($_POST['submit'])) {
 	$firmenname = $anrede = $ansprechpartner = $telnr = $email = $bereich = $teilnahmeDatum = $tische = $stuehle = $anmerkung = $vortrag = $vortragDatum = $vortragDauer = $vortragThema = $emailKopie = $bereichSonstige = "";
 
 	# DebugMode für zusätzliche Ausgaben falls benötigt
-	$debugMode = false;
+	$debugMode = true;
+
+
 
 	# Filtern von niocht erlauben Eingaben
 	function correctForminput($input)
@@ -38,6 +40,9 @@ if (isset($_POST['submit'])) {
 	$vortragDauer 	 = correctForminput($_POST['vortragDauer']);
 	$emailKopie 	 = correctForminput($_POST['emailKopie']);
 
+
+	$stuehle = "Hallo"; 
+	$tische = "Test"; 
   $messageIdent = md5($firmenname . $anrede . $ansprechpartner . $telnr . $email . $bereich . $teilnahmeDatum . $tische . $stuehle . $anmerkung . $vortrag . $vortragDatum . $vortragDauer . $vortragThema . $emailKopie . $bereichSonstige);
 
 	$sessionMessageIdent = isset($_SESSION['messageIdent'])?$_SESSION['messageIdent']:'';
@@ -83,6 +88,17 @@ if (isset($_POST['submit'])) {
 		echo "Kopie an E-Mail: $emailKopie<br>";
 	}
 
+
+	if (!is_numeric($tische) || !is_numeric($stuehle)) 
+	{
+		include("fehler.html");
+		echo "<script type='text/javascript'>
+			 $(document).ready(function(){
+			 $('#ModalFehler').modal('show');
+			 });
+			 </script>";
+		exit; 
+	}  
 
 	$sql_insert = $link->prepare("INSERT INTO anmeldungen
 									(firmenname, anrede, ansprechpartner, telnr, email, bereich, teilnahmeDatum, tische, stuehle, anmerkung, vortrag, vortragDatum, vortragThema, vortragDauer, emailKopie)
