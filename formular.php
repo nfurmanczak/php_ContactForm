@@ -184,7 +184,7 @@
             <label for="tische">Anzahl benötigter Tische <span class="required">*</span></label>
             <input type="number" class="form-control" id="tische" name="tische" value="0" min="0" max="2" required>
             <div class="invalid-feedback">
-              Zulässiger Wert ist nur 0 bis 4.
+              Zulässiger Wert ist nur 0 bis 2.
             </div>
           </div>
           <div class="form-group col-md-4">
