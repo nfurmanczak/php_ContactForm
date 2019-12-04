@@ -159,7 +159,7 @@
       <div class="box_gray">
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="teilnahmeDatum"><br>Teilnahme am <span class="required">*</span></label>
+            <label for="teilnahmeDatum">Teilnahme am <span class="required">*</span></label>
             <select id="teilnahmeDatum" class="custom-select" name="teilnahmeDatum" id="teilnahmeDatum" required>
               <?php
               echo "<option value=\"\" selected>Bitte wählen</option>";
@@ -181,14 +181,14 @@
             </div>
           </div>
           <div class="form-group col-md-4">
-            <label for="tische"><br>Anzahl benötigter Tische <span class="required">*</span></label>
+            <label for="tische">Anzahl benötigter Tische <span class="required">*</span></label>
             <input type="number" class="form-control" id="tische" name="tische" value="0" min="0" max="2" required>
             <div class="invalid-feedback">
               Zulässiger Wert ist nur 0 bis 4.
             </div>
           </div>
           <div class="form-group col-md-4">
-            <label for="stuehle"><br>Anzahl benötigter Stühle <span class="required">*</span></label>
+            <label for="stuehle">Anzahl benötigter Stühle <span class="required">*</span></label>
             <input type="number" class="form-control" id="stuehle" name="stuehle" value="0" min="0" max="4" required>
             <div class="invalid-feedback">
               Zulässiger Wert ist nur 0 bis 4.
@@ -289,7 +289,7 @@
     <!-- ENDE DES FORMULARES  -->
     <!-- ##################### -->
 
-    
+
     <!-- ################ -->
     <!-- START JAVASCRIPT -->
     <!-- ################ -->

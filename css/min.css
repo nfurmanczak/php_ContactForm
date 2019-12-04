@@ -2,12 +2,14 @@
     background-color: #f7f7f7;
     border-radius: 20px;
     padding: 13px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
   }
 
   .box_yellow {
     background-color: #FBFBEF;
     border-radius: 20px;
     padding: 20px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
   }
 
   .box_white {
@@ -32,3 +34,4 @@
   span.required {
     color:red;
   }
+
